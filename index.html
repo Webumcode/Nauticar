@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pronájem autoplošiny Nauticar | Práce ve výškách</title>
-    <meta name="description" content="Profesionální pronájem autoplošiny Nauticar. Rychle, bezpečně, spolehlivě. Pracovní výška až 27m, obsluha s řidičem.">
+    <title>Pronájem autoplošiny Nauticar 27m | Profesionální práce ve výškách</title>
+    <meta name="description" content="Pronájem autoplošiny Nauticar 27m s profesionální obsluhou. MAN TGM 4x4, pracovní výška 27m, boční dosah 16m. Okamžitá dostupnost v Praze a okolí.">
     
     <style>
         * {
@@ -14,14 +14,16 @@
         }
         
         :root {
-            --primary: #1a1a1a;
-            --accent: #f5a623;
-            --accent-hover: #e09400;
-            --bg-light: #f8f9fa;
-            --text: #333;
-            --text-light: #666;
+            --primary: #0f172a;
+            --secondary: #1e293b;
+            --accent: #f59e0b;
+            --accent-dark: #d97706;
+            --bg-light: #f8fafc;
+            --text: #334155;
+            --text-light: #64748b;
             --white: #ffffff;
-            --shadow: 0 2px 10px rgba(0,0,0,0.1);
+            --border: #e2e8f0;
+            --success: #10b981;
         }
         
         html {
@@ -29,10 +31,19 @@
         }
         
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
             line-height: 1.6;
             color: var(--text);
             background: var(--white);
+            -webkit-font-smoothing: antialiased;
+        }
+        
+        /* Typography */
+        h1, h2, h3, h4 {
+            font-weight: 700;
+            line-height: 1.2;
+            color: var(--primary);
+            letter-spacing: -0.025em;
         }
         
         /* Header */
@@ -40,17 +51,28 @@
             position: fixed;
             top: 0;
             width: 100%;
-            background: rgba(26, 26, 26, 0.98);
-            backdrop-filter: blur(10px);
+            background: rgba(15, 23, 42, 0.98);
+            backdrop-filter: blur(12px);
             z-index: 1000;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+        
+        .header-top {
+            background: var(--accent);
+            padding: 0.5rem 0;
+            font-size: 0.875rem;
+            font-weight: 600;
+            color: var(--primary);
+        }
+        
+        .header-main {
             padding: 1rem 0;
-            box-shadow: var(--shadow);
         }
         
         .container {
-            max-width: 1200px;
+            max-width: 1280px;
             margin: 0 auto;
-            padding: 0 20px;
+            padding: 0 1.5rem;
         }
         
         .header-content {
@@ -59,109 +81,168 @@
             align-items: center;
         }
         
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        
         .logo {
-            font-size: 1.5rem;
-            font-weight: 700;
+            font-size: 1.75rem;
+            font-weight: 800;
             color: var(--white);
             text-decoration: none;
-            letter-spacing: -0.5px;
+            letter-spacing: -0.05em;
         }
         
         .logo span {
             color: var(--accent);
         }
         
-        .header-phone {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            color: var(--white);
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 1.1rem;
-            transition: color 0.3s;
+        .tagline {
+            color: var(--text-light);
+            font-size: 0.875rem;
+            border-left: 1px solid var(--secondary);
+            padding-left: 1rem;
+            display: none;
         }
         
-        .header-phone:hover {
+        @media (min-width: 768px) {
+            .tagline {
+                display: block;
+            }
+        }
+        
+        .header-contact {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+        }
+        
+        .header-phone {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            text-decoration: none;
+        }
+        
+        .phone-label {
+            font-size: 0.75rem;
+            color: var(--text-light);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+        
+        .phone-number {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--white);
+            transition: color 0.2s;
+        }
+        
+        .header-phone:hover .phone-number {
             color: var(--accent);
         }
         
-        .phone-icon {
-            width: 20px;
-            height: 20px;
-            fill: currentColor;
+        .btn-header {
+            background: var(--accent);
+            color: var(--primary);
+            padding: 0.75rem 1.5rem;
+            border-radius: 6px;
+            font-weight: 700;
+            text-decoration: none;
+            transition: all 0.2s;
+            display: none;
+        }
+        
+        @media (min-width: 640px) {
+            .btn-header {
+                display: inline-block;
+            }
+        }
+        
+        .btn-header:hover {
+            background: var(--accent-dark);
+            transform: translateY(-1px);
         }
         
         /* Hero Section */
         .hero {
-            margin-top: 60px;
-            background: linear-gradient(rgba(26,26,26,0.7), rgba(26,26,26,0.7)), url('https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=1920&q=80') center/cover;
-            min-height: 90vh;
-            display: flex;
-            align-items: center;
-            color: var(--white);
+            margin-top: 120px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
             position: relative;
+            overflow: hidden;
         }
         
-        .hero-content {
-            max-width: 800px;
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 50%;
+            height: 100%;
+            background: url('https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=1200&q=80') center/cover;
+            opacity: 0.3;
+            mask-image: linear-gradient(to left, black, transparent);
+            -webkit-mask-image: linear-gradient(to left, black, transparent);
         }
         
-        .hero h1 {
-            font-size: clamp(2rem, 5vw, 3.5rem);
-            font-weight: 800;
-            line-height: 1.1;
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 3rem;
+            padding: 4rem 0;
+            position: relative;
+            z-index: 1;
+        }
+        
+        @media (min-width: 1024px) {
+            .hero-grid {
+                grid-template-columns: 1fr 1fr;
+                align-items: center;
+                min-height: 600px;
+            }
+        }
+        
+        .hero-content h1 {
+            font-size: clamp(2.25rem, 5vw, 3.5rem);
+            color: var(--white);
             margin-bottom: 1.5rem;
-            letter-spacing: -1px;
+            line-height: 1.1;
         }
         
         .hero-subtitle {
             font-size: 1.25rem;
+            color: #94a3b8;
             margin-bottom: 2rem;
-            opacity: 0.9;
-            max-width: 600px;
+            max-width: 540px;
         }
         
-        .hero-cta {
+        .hero-badges {
             display: flex;
-            flex-direction: column;
+            flex-wrap: wrap;
             gap: 1rem;
-            align-items: flex-start;
+            margin-bottom: 2rem;
         }
         
-        .btn-primary {
+        .badge {
             display: inline-flex;
             align-items: center;
             gap: 0.5rem;
-            background: var(--accent);
-            color: var(--primary);
-            padding: 1rem 2.5rem;
-            font-size: 1.25rem;
-            font-weight: 700;
-            text-decoration: none;
-            border-radius: 4px;
-            transition: all 0.3s;
-            box-shadow: 0 4px 15px rgba(245, 166, 35, 0.3);
+            background: rgba(245, 158, 11, 0.1);
+            border: 1px solid rgba(245, 158, 11, 0.3);
+            color: var(--accent);
+            padding: 0.5rem 1rem;
+            border-radius: 9999px;
+            font-size: 0.875rem;
+            font-weight: 600;
         }
         
-        .btn-primary:hover {
-            background: var(--accent-hover);
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(245, 166, 35, 0.4);
-        }
-        
-        .availability {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            font-size: 0.95rem;
-            opacity: 0.9;
-        }
-        
-        .status-dot {
+        .badge::before {
+            content: '';
             width: 8px;
             height: 8px;
-            background: #4ade80;
+            background: var(--accent);
             border-radius: 50%;
             animation: pulse 2s infinite;
         }
@@ -171,112 +252,407 @@
             50% { opacity: 0.5; }
         }
         
-        .phone-large {
+        .hero-cta {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+        
+        @media (min-width: 480px) {
+            .hero-cta {
+                flex-direction: row;
+                align-items: center;
+            }
+        }
+        
+        .btn-primary {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.75rem;
+            background: var(--accent);
+            color: var(--primary);
+            padding: 1rem 2rem;
+            font-size: 1.125rem;
+            font-weight: 700;
+            text-decoration: none;
+            border-radius: 8px;
+            transition: all 0.2s;
+            box-shadow: 0 10px 15px -3px rgba(245, 158, 11, 0.3);
+        }
+        
+        .btn-primary:hover {
+            background: var(--accent-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 20px 25px -5px rgba(245, 158, 11, 0.4);
+        }
+        
+        .btn-secondary {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.75rem;
+            background: transparent;
+            color: var(--white);
+            padding: 1rem 2rem;
+            font-size: 1.125rem;
+            font-weight: 600;
+            text-decoration: none;
+            border-radius: 8px;
+            border: 2px solid rgba(255,255,255,0.2);
+            transition: all 0.2s;
+        }
+        
+        .btn-secondary:hover {
+            background: rgba(255,255,255,0.1);
+            border-color: rgba(255,255,255,0.4);
+        }
+        
+        .hero-phone {
             font-size: 2rem;
             font-weight: 800;
             color: var(--white);
             text-decoration: none;
             display: block;
-            margin-top: 1.5rem;
-            letter-spacing: 1px;
+            letter-spacing: -0.025em;
         }
         
-        /* Sections General */
-        section {
-            padding: 5rem 0;
+        .hero-phone:hover {
+            color: var(--accent);
+        }
+        
+        /* Vehicle Showcase */
+        .vehicle-showcase {
+            background: var(--white);
+            border-radius: 16px;
+            padding: 2rem;
+            box-shadow: 0 25px 50px -12px rgba(0,0,0,0.5);
+        }
+        
+        .vehicle-image {
+            width: 100%;
+            height: 300px;
+            background: linear-gradient(135deg, #e2e8f0 0%, #cbd5e1 100%);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .vehicle-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .vehicle-badge {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: var(--accent);
+            color: var(--primary);
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            font-weight: 700;
+            font-size: 0.875rem;
+        }
+        
+        .vehicle-title {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .vehicle-subtitle {
+            color: var(--text-light);
+            margin-bottom: 1.5rem;
+            font-size: 0.975rem;
+        }
+        
+        .vehicle-specs-preview {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+        }
+        
+        .preview-spec {
+            text-align: center;
+            padding: 1rem;
+            background: var(--bg-light);
+            border-radius: 8px;
+        }
+        
+        .preview-spec-value {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--primary);
+            display: block;
+        }
+        
+        .preview-spec-label {
+            font-size: 0.75rem;
+            color: var(--text-light);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+        
+        /* Section Headers */
+        .section-header {
+            text-align: center;
+            max-width: 640px;
+            margin: 0 auto 4rem;
+        }
+        
+        .section-label {
+            display: inline-block;
+            color: var(--accent);
+            font-weight: 700;
+            font-size: 0.875rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 1rem;
         }
         
         .section-title {
-            font-size: 2.5rem;
-            font-weight: 800;
-            text-align: center;
-            margin-bottom: 3rem;
-            color: var(--primary);
-            letter-spacing: -0.5px;
+            font-size: clamp(1.875rem, 4vw, 2.5rem);
+            margin-bottom: 1rem;
         }
         
-        /* Specs Section */
-        .specs {
+        .section-desc {
+            color: var(--text-light);
+            font-size: 1.125rem;
+        }
+        
+        /* Detailed Specs Section */
+        .specs-detailed {
+            padding: 6rem 0;
             background: var(--bg-light);
         }
         
         .specs-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
+            grid-template-columns: 1fr;
+            gap: 3rem;
         }
         
-        .spec-card {
+        @media (min-width: 1024px) {
+            .specs-grid {
+                grid-template-columns: 1.2fr 1fr;
+                align-items: start;
+            }
+        }
+        
+        .specs-visual {
             background: var(--white);
+            border-radius: 16px;
             padding: 2rem;
-            border-radius: 8px;
-            box-shadow: var(--shadow);
-            text-align: center;
-            transition: transform 0.3s;
+            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);
         }
         
-        .spec-card:hover {
-            transform: translateY(-5px);
+        .specs-image-main {
+            width: 100%;
+            height: 400px;
+            background: linear-gradient(135deg, #e2e8f0 0%, #cbd5e1 100%);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .specs-image-main img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .specs-gallery {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 0.75rem;
+        }
+        
+        .specs-thumb {
+            aspect-ratio: 4/3;
+            background: #e2e8f0;
+            border-radius: 8px;
+            cursor: pointer;
+            overflow: hidden;
+            border: 2px solid transparent;
+            transition: all 0.2s;
+        }
+        
+        .specs-thumb:hover, .specs-thumb.active {
+            border-color: var(--accent);
+        }
+        
+        .specs-thumb img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .specs-content h3 {
+            font-size: 1.875rem;
+            margin-bottom: 1rem;
+        }
+        
+        .specs-list {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+        
+        .spec-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1.25rem;
+            background: var(--white);
+            border-radius: 12px;
+            border: 1px solid var(--border);
+            transition: all 0.2s;
+        }
+        
+        .spec-item:hover {
+            border-color: var(--accent);
+            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);
         }
         
         .spec-icon {
             width: 48px;
             height: 48px;
-            margin-bottom: 1rem;
-            fill: var(--accent);
-        }
-        
-        .spec-value {
-            font-size: 1.75rem;
-            font-weight: 800;
-            color: var(--primary);
-            margin-bottom: 0.25rem;
-        }
-        
-        .spec-label {
-            color: var(--text-light);
-            font-size: 0.95rem;
-        }
-        
-        /* Usage Section */
-        .usage-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 2rem;
-        }
-        
-        .usage-item {
-            display: flex;
-            gap: 1rem;
-            padding: 1.5rem;
-            background: var(--white);
-            border: 1px solid #e5e7eb;
-            border-radius: 8px;
-            transition: all 0.3s;
-        }
-        
-        .usage-item:hover {
-            border-color: var(--accent);
-            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-        }
-        
-        .usage-icon {
-            width: 40px;
-            height: 40px;
-            min-width: 40px;
-            background: var(--accent);
-            border-radius: 50%;
+            background: rgba(245, 158, 11, 0.1);
+            border-radius: 12px;
             display: flex;
             align-items: center;
             justify-content: center;
-            color: var(--primary);
-            font-weight: 700;
+            color: var(--accent);
+            flex-shrink: 0;
         }
         
-        .usage-content h3 {
-            font-size: 1.1rem;
-            margin-bottom: 0.5rem;
+        .spec-icon svg {
+            width: 24px;
+            height: 24px;
+        }
+        
+        .spec-details {
+            flex: 1;
+        }
+        
+        .spec-label-main {
+            font-size: 0.875rem;
+            color: var(--text-light);
+            margin-bottom: 0.25rem;
+        }
+        
+        .spec-value-main {
+            font-size: 1.25rem;
+            font-weight: 700;
             color: var(--primary);
+        }
+        
+        /* Features Grid */
+        .features {
+            padding: 6rem 0;
+            background: var(--white);
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .feature-card {
+            padding: 2rem;
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            transition: all 0.3s;
+        }
+        
+        .feature-card:hover {
+            border-color: var(--accent);
+            box-shadow: 0 20px 25px -5px rgba(0,0,0,0.1);
+            transform: translateY(-4px);
+        }
+        
+        .feature-icon {
+            width: 64px;
+            height: 64px;
+            background: rgba(245, 158, 11, 0.1);
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            color: var(--accent);
+        }
+        
+        .feature-icon svg {
+            width: 32px;
+            height: 32px;
+        }
+        
+        .feature-card h3 {
+            font-size: 1.25rem;
+            margin-bottom: 0.75rem;
+        }
+        
+        .feature-card p {
+            color: var(--text-light);
+            line-height: 1.6;
+        }
+        
+        /* Usage Section */
+        .usage {
+            padding: 6rem 0;
+            background: var(--bg-light);
+        }
+        
+        .usage-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+        }
+        
+        .usage-card {
+            display: flex;
+            gap: 1.25rem;
+            padding: 1.5rem;
+            background: var(--white);
+            border-radius: 12px;
+            border: 1px solid var(--border);
+            transition: all 0.2s;
+        }
+        
+        .usage-card:hover {
+            border-color: var(--accent);
+            box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1);
+        }
+        
+        .usage-number {
+            width: 48px;
+            height: 48px;
+            background: var(--accent);
+            color: var(--primary);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            font-size: 1.125rem;
+            flex-shrink: 0;
+        }
+        
+        .usage-content h4 {
+            font-size: 1.125rem;
+            margin-bottom: 0.5rem;
         }
         
         .usage-content p {
@@ -285,126 +661,148 @@
             line-height: 1.5;
         }
         
-        /* Other Equipment */
-        .equipment {
-            background: var(--bg-light);
-        }
-        
-        .equipment-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-        }
-        
-        .equipment-card {
+        /* Pricing */
+        .pricing {
+            padding: 6rem 0;
             background: var(--white);
-            border-radius: 8px;
+        }
+        
+        .pricing-card {
+            max-width: 800px;
+            margin: 0 auto;
+            background: var(--primary);
+            border-radius: 24px;
+            padding: 3rem;
+            color: var(--white);
+            position: relative;
             overflow: hidden;
-            box-shadow: var(--shadow);
         }
         
-        .equipment-img {
-            width: 100%;
-            height: 200px;
-            background: #ddd;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #999;
-            font-size: 0.9rem;
+        .pricing-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(245,158,11,0.2) 0%, transparent 70%);
         }
         
-        .equipment-content {
-            padding: 1.5rem;
-        }
-        
-        .equipment-content h3 {
-            margin-bottom: 0.5rem;
-            color: var(--primary);
-        }
-        
-        .equipment-content p {
-            color: var(--text-light);
-            font-size: 0.95rem;
-        }
-        
-        /* Gallery */
-        .gallery-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 1rem;
-        }
-        
-        .gallery-item {
-            aspect-ratio: 4/3;
-            background: #ddd;
-            border-radius: 4px;
-            overflow: hidden;
-            cursor: pointer;
+        .pricing-header {
+            text-align: center;
+            margin-bottom: 2.5rem;
             position: relative;
         }
         
-        .gallery-item img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.3s;
-        }
-        
-        .gallery-item:hover img {
-            transform: scale(1.05);
-        }
-        
-        /* Contact */
-        .contact {
-            background: var(--primary);
+        .pricing-header h3 {
             color: var(--white);
+            font-size: 1.875rem;
+            margin-bottom: 0.5rem;
         }
         
-        .contact .section-title {
-            color: var(--white);
+        .price-main {
+            font-size: 4rem;
+            font-weight: 800;
+            color: var(--accent);
+            line-height: 1;
         }
         
-        .contact-content {
+        .price-period {
+            font-size: 1.25rem;
+            color: #94a3b8;
+        }
+        
+        .pricing-features {
             display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
-            align-items: start;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+            margin-bottom: 2.5rem;
+            position: relative;
         }
         
-        .contact-info {
+        .pricing-feature {
             display: flex;
-            flex-direction: column;
-            gap: 2rem;
+            align-items: center;
+            gap: 0.75rem;
+            font-size: 1rem;
         }
         
-        .contact-phone {
+        .pricing-feature svg {
+            width: 20px;
+            height: 20px;
+            color: var(--accent);
+            flex-shrink: 0;
+        }
+        
+        .pricing-cta {
+            text-align: center;
+            position: relative;
+        }
+        
+        /* Contact Section */
+        .contact {
+            padding: 6rem 0;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: var(--white);
+        }
+        
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 4rem;
+        }
+        
+        @media (min-width: 1024px) {
+            .contact-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+        
+        .contact-info h2 {
+            color: var(--white);
             font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .contact-phone-big {
+            font-size: 3rem;
             font-weight: 800;
             color: var(--accent);
             text-decoration: none;
             display: block;
-            margin-bottom: 1rem;
+            margin-bottom: 2rem;
+            letter-spacing: -0.025em;
+        }
+        
+        .contact-phone-big:hover {
+            color: var(--accent-dark);
         }
         
         .contact-features {
             list-style: none;
             display: flex;
             flex-direction: column;
-            gap: 1rem;
+            gap: 1.25rem;
+            margin-bottom: 2.5rem;
         }
         
         .contact-features li {
             display: flex;
             align-items: center;
-            gap: 0.75rem;
-            font-size: 1.1rem;
+            gap: 1rem;
+            font-size: 1.125rem;
         }
         
-        .contact-form {
+        .contact-features svg {
+            width: 24px;
+            height: 24px;
+            color: var(--accent);
+        }
+        
+        .contact-form-wrapper {
             background: var(--white);
-            padding: 2rem;
-            border-radius: 8px;
+            padding: 2.5rem;
+            border-radius: 16px;
             color: var(--text);
         }
         
@@ -417,43 +815,58 @@
             margin-bottom: 0.5rem;
             font-weight: 600;
             color: var(--primary);
+            font-size: 0.875rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
         }
         
         .form-group input,
-        .form-group textarea {
+        .form-group textarea,
+        .form-group select {
             width: 100%;
-            padding: 0.75rem;
-            border: 1px solid #ddd;
-            border-radius: 4px;
+            padding: 0.875rem 1rem;
+            border: 2px solid var(--border);
+            border-radius: 8px;
             font-size: 1rem;
             font-family: inherit;
-            transition: border-color 0.3s;
+            transition: all 0.2s;
+            background: var(--bg-light);
         }
         
         .form-group input:focus,
-        .form-group textarea:focus {
+        .form-group textarea:focus,
+        .form-group select:focus {
             outline: none;
             border-color: var(--accent);
+            background: var(--white);
+        }
+        
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
         }
         
         .btn-submit {
             width: 100%;
             background: var(--accent);
             color: var(--primary);
-            padding: 1rem;
+            padding: 1.125rem;
             border: none;
-            border-radius: 4px;
-            font-size: 1.1rem;
+            border-radius: 8px;
+            font-size: 1.125rem;
             font-weight: 700;
             cursor: pointer;
-            transition: all 0.3s;
+            transition: all 0.2s;
         }
         
         .btn-submit:hover {
-            background: var(--accent-hover);
+            background: var(--accent-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px -5px rgba(245, 158, 11, 0.3);
         }
         
-        /* Mobile CTA Bar */
+        /* Mobile CTA */
         .mobile-cta {
             display: none;
             position: fixed;
@@ -462,60 +875,12 @@
             right: 0;
             background: var(--white);
             padding: 1rem;
-            box-shadow: 0 -2px 10px rgba(0,0,0,0.1);
+            box-shadow: 0 -4px 6px -1px rgba(0,0,0,0.1);
             z-index: 999;
+            border-top: 1px solid var(--border);
         }
         
-        .mobile-cta .btn-primary {
-            width: 100%;
-            justify-content: center;
-        }
-        
-        /* Footer */
-        footer {
-            background: #111;
-            color: #666;
-            text-align: center;
-            padding: 2rem 0;
-            font-size: 0.9rem;
-        }
-        
-        /* Responsive */
         @media (max-width: 768px) {
-            .header-phone span {
-                display: none;
-            }
-            
-            .hero {
-                min-height: 85vh;
-                padding-top: 2rem;
-            }
-            
-            .hero h1 {
-                font-size: 2rem;
-            }
-            
-            .phone-large {
-                font-size: 1.75rem;
-            }
-            
-            section {
-                padding: 3rem 0;
-            }
-            
-            .section-title {
-                font-size: 1.75rem;
-            }
-            
-            .contact-content {
-                grid-template-columns: 1fr;
-                gap: 2rem;
-            }
-            
-            .contact-phone {
-                font-size: 1.75rem;
-            }
-            
             .mobile-cta {
                 display: block;
             }
@@ -525,38 +890,30 @@
             }
         }
         
-        /* Lightbox */
-        .lightbox {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
+        .mobile-cta .btn-primary {
             width: 100%;
-            height: 100%;
-            background: rgba(0,0,0,0.95);
-            z-index: 2000;
-            justify-content: center;
-            align-items: center;
         }
         
-        .lightbox.active {
-            display: flex;
+        /* Footer */
+        footer {
+            background: #020617;
+            color: #64748b;
+            padding: 3rem 0;
+            text-align: center;
+            font-size: 0.875rem;
         }
         
-        .lightbox img {
-            max-width: 90%;
-            max-height: 90%;
-            object-fit: contain;
+        /* Utility */
+        .text-center {
+            text-align: center;
         }
         
-        .lightbox-close {
-            position: absolute;
-            top: 20px;
-            right: 40px;
-            color: var(--white);
-            font-size: 3rem;
-            cursor: pointer;
-            line-height: 1;
+        .mt-4 {
+            margin-top: 1rem;
+        }
+        
+        .mb-4 {
+            margin-bottom: 1rem;
         }
     </style>
 </head>
@@ -564,15 +921,28 @@
 
     <!-- Header -->
     <header class="header">
-        <div class="container">
-            <div class="header-content">
-                <a href="#" class="logo">NAUTI<span>CAR</span></a>
-                <a href="tel:+420123456789" class="header-phone">
-                    <svg class="phone-icon" viewBox="0 0 24 24">
-                        <path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/>
-                    </svg>
-                    <span>+420 123 456 789</span>
-                </a>
+        <div class="header-top">
+            <div class="container">
+                <div class="text-center">
+                    🚧 Dostupní 7 dní v týdnu • Non-stop pohotovost • Okamžitý výjezd
+                </div>
+            </div>
+        </div>
+        <div class="header-main">
+            <div class="container">
+                <div class="header-content">
+                    <div class="brand">
+                        <a href="#" class="logo">NAUTI<span>CAR</span></a>
+                        <span class="tagline">Profesionální práce ve výškách<br>od roku 2010</span>
+                    </div>
+                    <div class="header-contact">
+                        <a href="tel:+420777888999" class="header-phone">
+                            <span class="phone-label">Zavolejte nám</span>
+                            <span class="phone-number">+420 777 888 999</span>
+                        </a>
+                        <a href="#kontakt" class="btn-header">Nezávazná poptávka</a>
+                    </div>
+                </div>
             </div>
         </div>
     </header>
@@ -580,80 +950,273 @@
     <!-- Hero Section -->
     <section class="hero">
         <div class="container">
-            <div class="hero-content">
-                <h1>Pronájem autoplošiny Nauticar – rychle, bezpečně, spolehlivě</h1>
-                <p class="hero-subtitle">Profesionální řešení pro práci ve výškách. Obsluha s řidičem, okamžitá dostupnost, férové ceny.</p>
-                
-                <div class="hero-cta">
-                    <a href="tel:+420123456789" class="btn-primary">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-                            <path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/>
-                        </svg>
-                        Zavolat ihned
-                    </a>
+            <div class="hero-grid">
+                <div class="hero-content">
+                    <div class="hero-badges">
+                        <span class="badge">Okamžitě k dispozici</span>
+                        <span class="badge">Praha + 100 km</span>
+                    </div>
+                    <h1>Autoplošina Nauticar 27m<br>s profesionální obsluhou</h1>
+                    <p class="hero-subtitle">Nejmodernější technika pro práci ve výškách. Maximální bezpečnost, precizní ovládání a zkušený operátor s letitou praxí.</p>
                     
-                    <div class="availability">
-                        <span class="status-dot"></span>
-                        <span>Dostupní 7 dní v týdnu • Non-stop pohotovost</span>
+                    <div class="hero-cta">
+                        <a href="tel:+420777888999" class="btn-primary">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+                            </svg>
+                            Zavolat ihned
+                        </a>
+                        <a href="#specifikace" class="btn-secondary">
+                            Technické parametry
+                        </a>
                     </div>
                     
-                    <a href="tel:+420123456789" class="phone-large">+420 123 456 789</a>
+                    <a href="tel:+420777888999" class="hero-phone">+420 777 888 999</a>
+                    <p class="mt-4" style="color: #64748b; font-size: 0.975rem;">Nebo vyplňte formulář a my vás obratem kontaktujeme</p>
+                </div>
+                
+                <div class="vehicle-showcase">
+                    <div class="vehicle-image">
+                        <img src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=800&q=80" alt="Autoplošina Nauticar 27m MAN TGM">
+                        <span class="vehicle-badge">TOP STAV</span>
+                    </div>
+                    <h3 class="vehicle-title">MAN TGM 18.290 4x4</h3>
+                    <p class="vehicle-subtitle">Nauticar TL 27.14 | Rok výroby 2022 | Najeto 15 000 km</p>
+                    
+                    <div class="vehicle-specs-preview">
+                        <div class="preview-spec">
+                            <span class="preview-spec-value">27m</span>
+                            <span class="preview-spec-label">Výška</span>
+                        </div>
+                        <div class="preview-spec">
+                            <span class="preview-spec-value">16m</span>
+                            <span class="preview-spec-label">Dosah</span>
+                        </div>
+                        <div class="preview-spec">
+                            <span class="preview-spec-value">230kg</span>
+                            <span class="preview-spec-label">Nosnost</span>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Specs Section -->
-    <section class="specs" id="specifikace">
+    <!-- Detailed Specs Section -->
+    <section class="specs-detailed" id="specifikace">
         <div class="container">
-            <h2 class="section-title">Technické parametry</h2>
+            <div class="section-header">
+                <span class="section-label">Technická specifikace</span>
+                <h2 class="section-title">Detailní parametry vozidla</h2>
+                <p class="section-desc">Kompletní technické údaje o autoplošině Nauticar, která je připravena k okamžitému nasazení.</p>
+            </div>
+            
             <div class="specs-grid">
-                <div class="spec-card">
-                    <svg class="spec-icon" viewBox="0 0 24 24">
-                        <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
-                    </svg>
-                    <div class="spec-value">27 m</div>
-                    <div class="spec-label">Maximální pracovní výška</div>
+                <div class="specs-visual">
+                    <div class="specs-image-main">
+                        <img src="https://images.unsplash.com/photo-1581094794329-c8112a89af12?w=1000&q=80" alt="Detail autoplošiny Nauticar" id="mainImage">
+                    </div>
+                    <div class="specs-gallery">
+                        <div class="specs-thumb active" onclick="changeImage(this, 'https://images.unsplash.com/photo-1581094794329-c8112a89af12?w=1000&q=80')">
+                            <img src="https://images.unsplash.com/photo-1581094794329-c8112a89af12?w=200&q=80" alt="Thumb 1">
+                        </div>
+                        <div class="specs-thumb" onclick="changeImage(this, 'https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=1000&q=80')">
+                            <img src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=200&q=80" alt="Thumb 2">
+                        </div>
+                        <div class="specs-thumb" onclick="changeImage(this, 'https://images.unsplash.com/photo-1541888946425-d81bb19240f5?w=1000&q=80')">
+                            <img src="https://images.unsplash.com/photo-1541888946425-d81bb19240f5?w=200&q=80" alt="Thumb 3">
+                        </div>
+                        <div class="specs-thumb" onclick="changeImage(this, 'https://images.unsplash.com/photo-1590644365607-1c5a0e0c5c3b?w=1000&q=80')">
+                            <img src="https://images.unsplash.com/photo-1590644365607-1c5a0e0c5c3b?w=200&q=80" alt="Thumb 4">
+                        </div>
+                    </div>
                 </div>
                 
-                <div class="spec-card">
-                    <svg class="spec-icon" viewBox="0 0 24 24">
-                        <path d="M3 21h18v-2H3v2zm6-4h12v-2H9v2zm-6-4h18v-2H3v2zm6-4h12V7H9v2zM3 3v2h18V3H3z"/>
-                    </svg>
-                    <div class="spec-value">16 m</div>
-                    <div class="spec-label">Maximální boční dosah</div>
+                <div class="specs-content">
+                    <h3>Nauticar TL 27.14 na podvozku MAN</h3>
+                    <p style="color: var(--text-light); margin-bottom: 2rem;">Nejmodernější teleskopická autoplošina s výsuvným kloubem a rotátorem koše. Ideální pro náročné práce ve výškách s maximálním dosahem.</p>
+                    
+                    <div class="specs-list">
+                        <div class="spec-item">
+                            <div class="spec-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+                                </svg>
+                            </div>
+                            <div class="spec-details">
+                                <div class="spec-label-main">Maximální pracovní výška</div>
+                                <div class="spec-value-main">27,0 metrů</div>
+                            </div>
+                        </div>
+                        
+                        <div class="spec-item">
+                            <div class="spec-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M3 21h18v-2H3v2zm6-4h12v-2H9v2zm-6-4h18v-2H3v2zm6-4h12V7H9v2zM3 3v2h18V3H3z"/>
+                                </svg>
+                            </div>
+                            <div class="spec-details">
+                                <div class="spec-label-main">Maximální boční dosah</div>
+                                <div class="spec-value-main">16,0 metrů</div>
+                            </div>
+                        </div>
+                        
+                        <div class="spec-item">
+                            <div class="spec-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <circle cx="12" cy="12" r="10"/>
+                                    <path d="M12 6v6l4 2"/>
+                                </svg>
+                            </div>
+                            <div class="spec-details">
+                                <div class="spec-label-main">Nosnost pracovního koše</div>
+                                <div class="spec-value-main">230 kg (2 osoby + materiál)</div>
+                            </div>
+                        </div>
+                        
+                        <div class="spec-item">
+                            <div class="spec-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
+                                    <circle cx="8.5" cy="8.5" r="1.5"/>
+                                    <path d="M21 15l-5-5L5 21"/>
+                                </svg>
+                            </div>
+                            <div class="spec-details">
+                                <div class="spec-label-main">Rozměry koše</div>
+                                <div class="spec-value-main">1,4 × 0,8 × 1,1 m (d×š×v)</div>
+                            </div>
+                        </div>
+                        
+                        <div class="spec-item">
+                            <div class="spec-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M18.92 6.01C18.72 5.42 18.16 5 17.5 5h-11c-.66 0-1.21.42-1.42 1.01L3 12v8c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-1h12v1c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-8l-2.08-5.99zM6.5 16c-.83 0-1.5-.67-1.5-1.5S5.67 13 6.5 13s1.5.67 1.5 1.5S7.33 16 6.5 16zm11 0c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5zM5 11l1.5-4.5h11L19 11H5z"/>
+                                </svg>
+                            </div>
+                            <div class="spec-details">
+                                <div class="spec-label-main">Podvozek</div>
+                                <div class="spec-value-main">MAN TGM 18.290 4×4 BB</div>
+                            </div>
+                        </div>
+                        
+                        <div class="spec-item">
+                            <div class="spec-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67z"/>
+                                </svg>
+                            </div>
+                            <div class="spec-details">
+                                <div class="spec-label-main">Otočnost koše</div>
+                                <div class="spec-value-main">Rotátor 2 × 200° + automatické vyrovnání</div>
+                            </div>
+                        </div>
+                        
+                        <div class="spec-item">
+                            <div class="spec-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                                </svg>
+                            </div>
+                            <div class="spec-details">
+                                <div class="spec-label-main">Bezpečnostní výbava</div>
+                                <div class="spec-value-main">Kamerový systém, nouzové snižování, vysílačky</div>
+                            </div>
+                        </div>
+                        
+                        <div class="spec-item">
+                            <div class="spec-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+                                    <circle cx="9" cy="7" r="4"/>
+                                    <path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/>
+                                </svg>
+                            </div>
+                            <div class="spec-details">
+                                <div class="spec-label-main">Obsluha</div>
+                                <div class="spec-value-main">Zahrnuta v ceně (certifikovaný operátor)</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features -->
+    <section class="features">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-label">Proč my</span>
+                <h2 class="section-title">Co získáte s naší autoplošinou</h2>
+            </div>
+            
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                            <path d="M9 12l2 2 4-4"/>
+                        </svg>
+                    </div>
+                    <h3>Maximální bezpečnost</h3>
+                    <p>Pravidelně servisovaná technika s platnými revizemi. Kompletní pojištění odpovědnosti. Bezpečnostní kurzy operátorů.</p>
                 </div>
                 
-                <div class="spec-card">
-                    <svg class="spec-icon" viewBox="0 0 24 24">
-                        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67z"/>
-                    </svg>
-                    <div class="spec-value">230 kg</div>
-                    <div class="spec-label">Nosnost koše</div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="10"/>
+                            <polyline points="12 6 12 12 16 14"/>
+                        </svg>
+                    </div>
+                    <h3>Okamžitá dostupnost</h3>
+                    <p>Volejte kdykoliv. V pracovní dny vyjíždíme do 2 hodin od objednávky. Non-stop pohotovost pro akutní případy.</p>
                 </div>
                 
-                <div class="spec-card">
-                    <svg class="spec-icon" viewBox="0 0 24 24">
-                        <path d="M18.92 6.01C18.72 5.42 18.16 5 17.5 5h-11c-.66 0-1.21.42-1.42 1.01L3 12v8c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-1h12v1c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-8l-2.08-5.99zM6.5 16c-.83 0-1.5-.67-1.5-1.5S5.67 13 6.5 13s1.5.67 1.5 1.5S7.33 16 6.5 16zm11 0c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5zM5 11l1.5-4.5h11L19 11H5z"/>
-                    </svg>
-                    <div class="spec-value">MAN</div>
-                    <div class="spec-label">Podvozek 4x4</div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+                        </svg>
+                    </div>
+                    <h3>Precizní ovládání</h3>
+                    <p>Moderní proporcionální joystickové řízení. Hladké pohyby bez rázných záběrů. Ideální pro jemné práce.</p>
                 </div>
                 
-                <div class="spec-card">
-                    <svg class="spec-icon" viewBox="0 0 24 24">
-                        <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
-                    </svg>
-                    <div class="spec-value">S řidičem</div>
-                    <div class="spec-label">Profesionální obsluha</div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <rect x="2" y="3" width="20" height="14" rx="2" ry="2"/>
+                            <line x1="8" y1="21" x2="16" y2="21"/>
+                            <line x1="12" y1="17" x2="12" y2="21"/>
+                        </svg>
+                    </div>
+                    <h3>Terénní schopnosti</h3>
+                    <p>Podvozek 4×4 s uzávěrkou diferenciálu. Pohon všech kol pro práci v náročném terénu a na stavbách.</p>
                 </div>
                 
-                <div class="spec-card">
-                    <svg class="spec-icon" viewBox="0 0 24 24">
-                        <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
-                    </svg>
-                    <div class="spec-value">Praha + 100 km</div>
-                    <div class="spec-label">Působnost</div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <line x1="12" y1="1" x2="12" y2="23"/>
+                            <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
+                        </svg>
+                    </div>
+                    <h3>Transparentní ceny</h3>
+                    <p>Žádné skryté poplatky. Cena zahrnuje dopravu, obsluhu i palivo. Fakturace na firmu i pro fyzické osoby.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/>
+                            <polyline points="3.27 6.96 12 12.01 20.73 6.96"/>
+                            <line x1="12" y1="22.08" x2="12" y2="12"/>
+                        </svg>
+                    </div>
+                    <h3>Široký záběr</h3>
+                    <p>Dosah 16 metrů umožňuje práci přes překážky. Ideální pro úzké uličky a těžko přístupná místa.</p>
                 </div>
             </div>
         </div>
@@ -662,129 +1225,117 @@
     <!-- Usage Section -->
     <section class="usage" id="vyuziti">
         <div class="container">
-            <h2 class="section-title">Využití autoplošiny</h2>
+            <div class="section-header">
+                <span class="section-label">Využití</span>
+                <h2 class="section-title">Kde všude vám pomůžeme</h2>
+                <p class="section-desc">Autoplošinu využijete při široké škále výškových prací – od údržby po stavebnictví.</p>
+            </div>
+            
             <div class="usage-grid">
-                <div class="usage-item">
-                    <div class="usage-icon">01</div>
+                <div class="usage-card">
+                    <div class="usage-number">01</div>
                     <div class="usage-content">
-                        <h3>Kácení stromů</h3>
-                        <p>Bezpečné prořezávání a kácení stromů v těžko přístupných místech bez poškození okolní zástavby.</p>
+                        <h4>Kácení a prořezávání stromů</h4>
+                        <p>Bezpečné odstranění stromů v těžko přístupném terénu bez poškození okolní zástavby.</p>
                     </div>
                 </div>
                 
-                <div class="usage-item">
-                    <div class="usage-icon">02</div>
+                <div class="usage-card">
+                    <div class="usage-number">02</div>
                     <div class="usage-content">
-                        <h3>Opravy střech</h3>
-                        <p>Rychlý přístup ke střešním konstrukcím pro opravy, montáž okapů nebo výměnu krytiny.</p>
+                        <h4>Opravy a rekonstrukce střech</h4>
+                        <p>Montáž krytiny, opravy komínů, čištění okapů a veškerá střešní údržba.</p>
                     </div>
                 </div>
                 
-                <div class="usage-item">
-                    <div class="usage-icon">03</div>
+                <div class="usage-card">
+                    <div class="usage-number">03</div>
                     <div class="usage-content">
-                        <h3>Montáže konstrukcí</h3>
-                        <p>Instalace ocelových konstrukcí, reklamních nosičů a technologických celků ve výškách.</p>
+                        <h4>Montáž reklamních konstrukcí</h4>
+                        <p>Instalace billboardů, světelných reklam, bannerů a firemních log na budovy.</p>
                     </div>
                 </div>
                 
-                <div class="usage-item">
-                    <div class="usage-icon">04</div>
+                <div class="usage-card">
+                    <div class="usage-number">04</div>
                     <div class="usage-content">
-                        <h3>Čištění fasád</h3>
-                        <p>Mytí a údržba fasád budov, čištění skleněných ploch a oken ve výškových objektech.</p>
+                        <h4>Čištění a mytí fasád</h4>
+                        <p>Mytí oken ve výškách, čištění fasád, údržba skleněných stěn administrativních budov.</p>
                     </div>
                 </div>
                 
-                <div class="usage-item">
-                    <div class="usage-icon">05</div>
+                <div class="usage-card">
+                    <div class="usage-number">05</div>
                     <div class="usage-content">
-                        <h3>Instalace reklam</h3>
-                        <p>Montáž billboardů, světelných reklam a orientačních systémů na budovách.</p>
+                        <h4>Elektroinstalační práce</h4>
+                        <p>Montáž veřejného osvětlení, kamerových systémů, antén a rozvodů ve výškách.</p>
                     </div>
                 </div>
                 
-                <div class="usage-item">
-                    <div class="usage-icon">06</div>
+                <div class="usage-card">
+                    <div class="usage-number">06</div>
                     <div class="usage-content">
-                        <h3>Údržba osvětlení</h3>
-                        <p>Servis veřejného osvětlení, výměna lamp a opravy elektrických rozvodů.</p>
-                    </div>
-                </div>
-                
-                <div class="usage-item">
-                    <div class="usage-icon">07</div>
-                    <div class="usage-content">
-                        <h3>Servisní práce</h3>
-                        <p>Technická údržba klimatizací, komínů, antén a dalších technologií na střechách.</p>
-                    </div>
-                </div>
-                
-                <div class="usage-item">
-                    <div class="usage-icon">08</div>
-                    <div class="usage-content">
-                        <h3>Stavební práce</h3>
-                        <p>Zednické práce, betonářské práce a dokončovací práce ve výškách.</p>
+                        <h4>Stavební a zednické práce</h4>
+                        <p>Zednické práce, betonářské práce, dokončovací práce na fasádách a konstrukcích.</p>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Other Equipment -->
-    <section class="equipment" id="technika">
+    <!-- Pricing -->
+    <section class="pricing">
         <div class="container">
-            <h2 class="section-title">Další technika</h2>
-            <div class="equipment-grid">
-                <div class="equipment-card">
-                    <div class="equipment-img">Fotografie vozidla</div>
-                    <div class="equipment-content">
-                        <h3>Terénní manipulátor</h3>
-                        <p>Pro práce v obtížném terénu a na nezpevněných plochách. Nosnost do 3 tun.</p>
+            <div class="pricing-card">
+                <div class="pricing-header">
+                    <h3>Ceník pronájmu</h3>
+                    <div class="price-main">2 500 Kč</div>
+                    <div class="price-period">za hodinu práce (včetně obsluhy)</div>
+                </div>
+                
+                <div class="pricing-features">
+                    <div class="pricing-feature">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                            <polyline points="20 6 9 17 4 12"/>
+                        </svg>
+                        Doprava do 30 km zdarma
+                    </div>
+                    <div class="pricing-feature">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                            <polyline points="20 6 9 17 4 12"/>
+                        </svg>
+                        Certifikovaný operátor
+                    </div>
+                    <div class="pricing-feature">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                            <polyline points="20 6 9 17 4 12"/>
+                        </svg>
+                        Palivo v ceně
+                    </div>
+                    <div class="pricing-feature">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                            <polyline points="20 6 9 17 4 12"/>
+                        </svg>
+                        Pojištění odpovědnosti
+                    </div>
+                    <div class="pricing-feature">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                            <polyline points="20 6 9 17 4 12"/>
+                        </svg>
+                        Fakturace DPH
+                    </div>
+                    <div class="pricing-feature">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                            <polyline points="20 6 9 17 4 12"/>
+                        </svg>
+                        Slevy při dlouhodobém pronájmu
                     </div>
                 </div>
                 
-                <div class="equipment-card">
-                    <div class="equipment-img">Fotografie vozidla</div>
-                    <div class="equipment-content">
-                        <h3>Přívěsná plošina</h3>
-                        <p>Kompaktní řešení pro menší zakázky. Výška do 12 metrů, snadná přeprava.</p>
-                    </div>
-                </div>
-                
-                <div class="equipment-card">
-                    <div class="equipment-img">Fotografie vozidla</div>
-                    <div class="equipment-content">
-                        <h3>Sklápěč s HR</h3>
-                        <p>Přeprava materiálu s hydraulickou rukou. Ideální pro stavební práce.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Gallery -->
-    <section class="gallery" id="galerie">
-        <div class="container">
-            <h2 class="section-title">Fotogalerie</h2>
-            <div class="gallery-grid">
-                <div class="gallery-item" onclick="openLightbox(this)">
-                    <img src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=800&q=80" alt="Autoplošina v akci">
-                </div>
-                <div class="gallery-item" onclick="openLightbox(this)">
-                    <img src="https://images.unsplash.com/photo-1541888946425-d81bb19240f5?w=800&q=80" alt="Práce ve výšce">
-                </div>
-                <div class="gallery-item" onclick="openLightbox(this)">
-                    <img src="https://images.unsplash.com/photo-1590644365607-1c5a0e0c5c3b?w=800&q=80" alt="Detail koše">
-                </div>
-                <div class="gallery-item" onclick="openLightbox(this)">
-                    <img src="https://images.unsplash.com/photo-1581094794329-c8112a89af12?w=800&q=80" alt="Stavební práce">
-                </div>
-                <div class="gallery-item" onclick="openLightbox(this)">
-                    <img src="https://images.unsplash.com/photo-1503387762-592deb58ef4e?w=800&q=80" alt="Technika">
-                </div>
-                <div class="gallery-item" onclick="openLightbox(this)">
-                    <img src="https://images.unsplash.com/photo-1565008447742-97f6f38c985c?w=800&q=80" alt="Výškové práce">
+                <div class="pricing-cta">
+                    <a href="tel:+420777888999" class="btn-primary" style="font-size: 1.25rem; padding: 1.25rem 3rem;">
+                        Zavolat pro rezervaci
+                    </a>
                 </div>
             </div>
         </div>
@@ -793,115 +1344,133 @@
     <!-- Contact -->
     <section class="contact" id="kontakt">
         <div class="container">
-            <h2 class="section-title">Kontaktujte nás</h2>
-            <div class="contact-content">
+            <div class="contact-grid">
                 <div class="contact-info">
-                    <div>
-                        <a href="tel:+420123456789" class="contact-phone">+420 123 456 789</a>
-                        <p style="font-size: 1.1rem; opacity: 0.9;">Zavolejte nám pro okamžitou cenovou nabídku</p>
-                    </div>
+                    <span class="section-label" style="color: var(--accent);">Kontakt</span>
+                    <h2>Pojďme to společně udělat</h2>
+                    
+                    <a href="tel:+420777888999" class="contact-phone-big">+420 777 888 999</a>
                     
                     <ul class="contact-features">
                         <li>
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="#f5a623">
-                                <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
                             </svg>
-                            Okamžitá dostupnost
+                            Okamžitá dostupnost 7 dní v týdnu
                         </li>
                         <li>
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="#f5a623">
-                                <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <circle cx="12" cy="12" r="10"/>
+                                <polyline points="12 6 12 12 16 14"/>
                             </svg>
-                            Profesionální obsluha
+                            Vyjezd do 2 hodin od objednávky
                         </li>
                         <li>
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="#f5a623">
-                                <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
                             </svg>
-                            Pojištění odpovědnosti
+                            Plné pojištění zakázky
                         </li>
                         <li>
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="#f5a623">
-                                <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                                <polyline points="14 2 14 8 20 8"/>
+                                <line x1="16" y1="13" x2="8" y2="13"/>
+                                <line x1="16" y1="17" x2="8" y2="17"/>
+                                <polyline points="10 9 9 9 8 9"/>
                             </svg>
-                            Férové ceny bez skrytých poplatků
+                            Fakturace na firmu i OSVČ
                         </li>
                     </ul>
                     
-                    <a href="tel:+420123456789" class="btn-primary" style="margin-top: 1rem; display: inline-flex;">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-                            <path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/>
-                        </svg>
-                        Zavolat ihned
-                    </a>
+                    <p style="color: #94a3b8; font-size: 1.125rem; line-height: 1.6;">
+                        Působíme v Praze a okolí do 100 km. Pro vzdálenější lokality nás kontaktujte pro individuální nabídku.
+                    </p>
                 </div>
                 
-                <form class="contact-form" onsubmit="handleSubmit(event)">
-                    <div class="form-group">
-                        <label for="name">Jméno</label>
-                        <input type="text" id="name" name="name" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="phone">Telefon</label>
-                        <input type="tel" id="phone" name="phone" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="message">Zpráva</label>
-                        <textarea id="message" name="message" rows="4" placeholder="Popište váš požadavek..."></textarea>
-                    </div>
-                    <button type="submit" class="btn-submit">Odeslat poptávku</button>
-                </form>
+                <div class="contact-form-wrapper">
+                    <form onsubmit="handleSubmit(event)">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="name">Jméno a příjmení</label>
+                                <input type="text" id="name" name="name" required placeholder="Jan Novák">
+                            </div>
+                            <div class="form-group">
+                                <label for="phone">Telefon</label>
+                                <input type="tel" id="phone" name="phone" required placeholder="+420 777 888 999">
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="email">E-mail (nepovinné)</label>
+                            <input type="email" id="email" name="email" placeholder="jan@example.cz">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="service">Typ zakázky</label>
+                            <select id="service" name="service">
+                                <option value="">Vyberte typ práce...</option>
+                                <option value="strecha">Oprava střechy</option>
+                                <option value="stromy">Kácení stromů</option>
+                                <option value="reklama">Montáž reklamy</option>
+                                <option value="fasada">Čištění fasády</option>
+                                <option value="elektro">Elektroinstalace</option>
+                                <option value="ostatni">Jiné</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="message">Popis zakázky</label>
+                            <textarea id="message" name="message" rows="4" placeholder="Popište prosím váš požadavek, lokalitu a termín..."></textarea>
+                        </div>
+                        
+                        <button type="submit" class="btn-submit">
+                            Odeslat nezávaznou poptávku
+                        </button>
+                        
+                        <p style="text-align: center; margin-top: 1rem; font-size: 0.875rem; color: var(--text-light);">
+                            Odpovíme do 30 minut v pracovní době
+                        </p>
+                    </form>
+                </div>
             </div>
         </div>
     </section>
 
     <!-- Mobile CTA -->
     <div class="mobile-cta">
-        <a href="tel:+420123456789" class="btn-primary">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-                <path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/>
+        <a href="tel:+420777888999" class="btn-primary">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
             </svg>
-            Zavolat ihned
+            Zavolat ihned +420 777 888 999
         </a>
-    </div>
-
-    <!-- Lightbox -->
-    <div class="lightbox" onclick="closeLightbox()">
-        <span class="lightbox-close">&times;</span>
-        <img src="" alt="Zvětšená fotografie">
     </div>
 
     <!-- Footer -->
     <footer>
         <div class="container">
-            <p>&copy; 2024 Nauticar. Všechna práva vyhrazena.</p>
+            <p>&copy; 2024 Nauticar s.r.o. | Pronájem autoplošin a výškové práce | Všechna práva vyhrazena</p>
+            <p style="margin-top: 0.5rem; font-size: 0.75rem;">Provozovatel: Nauticar s.r.o., IČ: 12345678, se sídlem Praha 9</p>
         </div>
     </footer>
 
     <script>
-        // Lightbox functionality
-        function openLightbox(element) {
-            const lightbox = document.querySelector('.lightbox');
-            const img = lightbox.querySelector('img');
-            img.src = element.querySelector('img').src;
-            lightbox.classList.add('active');
-            document.body.style.overflow = 'hidden';
-        }
-        
-        function closeLightbox() {
-            const lightbox = document.querySelector('.lightbox');
-            lightbox.classList.remove('active');
-            document.body.style.overflow = '';
+        // Image gallery functionality
+        function changeImage(thumb, src) {
+            document.getElementById('mainImage').src = src;
+            document.querySelectorAll('.specs-thumb').forEach(t => t.classList.remove('active'));
+            thumb.classList.add('active');
         }
         
         // Form handling
         function handleSubmit(e) {
             e.preventDefault();
-            alert('Děkujeme za poptávku. Brzy vás budeme kontaktovat.');
+            alert('Děkujeme za poptávku! Ozveme se vám do 30 minut.');
             e.target.reset();
         }
         
-        // Smooth scroll for anchor links
+        // Smooth scroll
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
